@@ -25,7 +25,7 @@
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "16.0.0",
+    "@testing-library/react": "15.0.6",
     "@testing-library/user-event": "^13.5.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",

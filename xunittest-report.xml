@@ -1,7 +1,250 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="1.224">
-  <testsuite name="src/__tests__/sample.test.js" errors="0" failures="0" skipped="0" timestamp="2024-08-21T07:20:13" time="0.864" tests="1">
-    <testcase classname="" name="Should render Hello World" time="0.012">
+<testsuites name="jest tests" tests="9" failures="9" errors="0" time="1.842">
+  <testsuite name="src/__tests__/sample.test.js" errors="0" failures="9" skipped="0" timestamp="2024-08-27T10:29:19" time="1.481" tests="9">
+    <testcase classname="" name="form should render required fields correctly" time="0.02">
+      <failure>Error: expect(element).toBeRequired()
+
+Received element is not required:
+  &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;text&quot; /&gt;
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:12:22)
+    at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname="" name="form should render disabled fields correctly" time="0.004">
+      <failure>Error: expect(element).toBeDisabled()
+
+Received element is not disabled:
+  &lt;input id=&quot;username&quot; name=&quot;username&quot; type=&quot;text&quot; /&gt;
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:22:25)
+    at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname="" name="dropdown should have correct values and display corresponding labels" time="0.031">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: &quot;us&quot;
+Received: &quot;United States&quot;
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:40:71)
+    at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname="" name="checkbox should store boolean value" time="0.005">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: &quot;on&quot;
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:65:32)
+    at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname="" name="form data should have correct structure and data types" time="0.01">
+      <failure>Error: expect(received).toEqual(expected) // deep equality
+
+- Expected  - 1
++ Received  + 1
+
+  Object {
+-   &quot;acceptTerms&quot;: true,
++   &quot;acceptTerms&quot;: &quot;on&quot;,
+    &quot;age&quot;: 30,
+    &quot;username&quot;: &quot;JohnDoe&quot;,
+  }
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:95:20)
+    at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname="" name="implement radio button and allow one selection at a time" time="0.005">
+      <failure>TestingLibraryElementError: Unable to find a label with the text of: Male
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;form-status hidden&quot;
+    /&gt;
+    &lt;form
+      class=&quot;form-container&quot;
+      role=&quot;form&quot;
+    &gt;
+      &lt;div
+        class=&quot;form-field-container radio&quot;
+      &gt;
+        &lt;label
+          for=&quot;gender&quot;
+        &gt;
+          Gender
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;button
+        class=&quot;submit-btn&quot;
+        type=&quot;submit&quot;
+      &gt;
+        Submit
+      &lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at Object.getElementError (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/config.js:37:19)
+    at getAllByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/queries/label-text.js:111:38)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+    at getByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:118:28)
+    at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname="" name="handles nested field structures correctly" time="0.005">
+      <failure>TestingLibraryElementError: Unable to find a label with the text of: /area/i
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;form-status hidden&quot;
+    /&gt;
+    &lt;form
+      class=&quot;form-container&quot;
+      role=&quot;form&quot;
+    &gt;
+      &lt;div
+        class=&quot;form-field-container text&quot;
+      &gt;
+        &lt;label
+          for=&quot;name&quot;
+        &gt;
+          Name
+        &lt;/label&gt;
+        &lt;input
+          id=&quot;name&quot;
+          name=&quot;name&quot;
+          placeholder=&quot;Enter your name&quot;
+          type=&quot;text&quot;
+        /&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;form-field-container checkbox&quot;
+      &gt;
+        &lt;label
+          for=&quot;subscribe&quot;
+        &gt;
+          Subscribe to newsletter
+        &lt;/label&gt;
+        &lt;input
+          id=&quot;subscribe&quot;
+          name=&quot;subscribe&quot;
+          type=&quot;checkbox&quot;
+        /&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;form-field-container number&quot;
+      &gt;
+        &lt;label
+          for=&quot;age&quot;
+        &gt;
+          Age
+        &lt;/label&gt;
+        &lt;input
+          id=&quot;age&quot;
+          name=&quot;age&quot;
+          type=&quot;number&quot;
+        /&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;form-field-container object&quot;
+      &gt;
+        &lt;label
+          for=&quot;address&quot;
+        &gt;
+          Address
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;button
+        class=&quot;submit-btn&quot;
+        type=&quot;submit&quot;
+      &gt;
+        Submit
+      &lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at Object.getElementError (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/config.js:37:19)
+    at getAllByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/queries/label-text.js:111:38)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+    at getByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:176:28)
+    at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname="" name="form submits successfully when custom validation passes" time="0.032">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: {&quot;username&quot;: &quot;JohnDoe&quot;}
+
+Number of calls: 0
+    at call (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:215:30)
+    at tryCatch (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at Generator._invoke (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at Generator.next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at asyncGeneratorStep (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at _next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname="" name="form shows validation error when custom validation fails" time="0.01">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: {&quot;username&quot;: &quot;JohnDoe&quot;}
+
+Number of calls: 0
+    at call (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:242:30)
+    at tryCatch (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at Generator._invoke (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at Generator.next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at asyncGeneratorStep (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at _next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1
+    at new Promise (&lt;anonymous&gt;)
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
     </testcase>
   </testsuite>
 </testsuites>
