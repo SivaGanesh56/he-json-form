@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import DynamicForm from './components/DynamicForm';
-
 import './styles.css';
 
 const formSchema = [

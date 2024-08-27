@@ -69,6 +69,10 @@ const formSchema = [
 ];
 ```
 
+#### output
+
+![Form](./image.png)
+
 ## Submission Instructions
 
 1. Clicking "Run code" will compile and run your code against sample tests, but it will not generate scores. Click on "Execution Log" to better understand the test execution.
