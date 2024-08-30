@@ -20,10 +20,9 @@ const DynamicForm = ({ formSchema, onFormDataChange, customValidate }) => {
   );
 
   const handleSubmit = useCallback((e) => {
-    /**
-       if {true}  setFormStatus('Form Submitted Successfully!');
-       if {false} setFormStatus('Form Validation Failed');
-       */
+    let formStatus = true;
+    if (formStatus) setFormStatus('Form Submitted Successfully!');
+    if (!formStatus) setFormStatus('Form Validation Failed');
   }, []);
 
   return (

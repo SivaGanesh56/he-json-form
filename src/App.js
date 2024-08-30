@@ -57,10 +57,16 @@ const formSchema = [
 ];
 
 export default function App() {
-  const customValidate = useCallback(
-    (formData) => String(formData.contact).startsWith('91'),
-    []
-  );
+  /**
+   * Custom validation function to check form data.
+   * @param {object} formData - The current form data.
+   * @returns {boolean} - Returns true if validation passes, false otherwise.
+   */
+  const customValidate = useCallback((formData) => {
+    // TODO: implement validation logic
+    // Example: return true if a specific field starts with a certain value
+  }, []);
+
   return (
     <div className="root-container">
       <h1 className="form-heading">Dynamic Form</h1>
