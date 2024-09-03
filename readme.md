@@ -73,37 +73,9 @@ const formSchema = [
 
 ### Test Cases
 
-- **Form Renders Required Fields Correctly:**
+- **dropdown should display correct labels:**
 
-  - Ensure that fields marked as required in the schema are correctly rendered with the `required` attribute. Currently, required field validation is not functioning properly, so this needs to be fixed. The `required` attribute will be passed as part of the schema like this:
-
-  ```javascript
-  {
-    type: 'text',
-    name: 'name',
-    label: 'Name',
-    placeholder: 'Enter your name',
-    required: true,
-  }
-  ```
-
-- **Form Renders Disabled Fields Correctly:**
-
-  - Ensure that fields marked as `disabled` in the schema are correctly rendered with the `disabled` attribute. Currently, disabled field rendering is not functioning properly, so this needs to be fixed. The `disabled` attribute will be passed as part of the schema like this:
-
-  ```javascript
-  {
-    type: 'text',
-    name: 'name',
-    label: 'Name',
-    placeholder: 'Enter your name',
-    disabled: true,
-  }
-  ```
-
-- **Dropdown Has Correct Values and Displays Corresponding Labels:**
-
-  - Verify that `select` fields render the correct options and display the appropriate labels. Currently, the dropdown is choosing the label instead of the value, so this needs to be fixed. The `select` field schema example is provided below:
+  - Ensure that select fields render with the correct options and display the appropriate labels. Currently, the dropdown is showing the value instead of the label, so this needs to be corrected. Below is an example of the select field schema::
 
   ```javascript
   {
@@ -117,46 +89,6 @@ const formSchema = [
     ],
   }
   ```
-
-- **Checkbox Stores Boolean Value:**
-
-  - Test that the checkbox field correctly updates the form data with a boolean value based on the user's interaction. The `checkbox` field schema example is provided below:
-
-  ```javascript
-  {
-    type: 'checkbox',
-    name: 'subscribe',
-    label: 'Subscribe to newsletter',
-  }
-  ```
-
-- **Form Data Has Correct Structure and Data Types:**
-
-  - Ensure that the form data structure matches the schema definition and that data types are correctly parsed and stored. For example, if the form schema includes fields for `username` (text), `age` (number), and `acceptTerms` (checkbox), make sure that:
-
-    - `username` is stored as a string,
-    - `age` is stored as a number,
-    - `acceptTerms` is stored as a boolean.
-
-  - Verify that after filling out the form and submitting it, the form data adheres to the correct structure and data types as specified in the schema.
-
-- **Implement Radio Button:**
-
-  - Ensure that radio button fields are correctly implemented, allowing users to select one option from a list of values. The options should be passed as part of the schema like this:
-
-  ```javascript
-  {
-    type: 'radio',
-    name: 'gender',
-    label: 'Gender',
-    options: [
-      { value: 'male', label: 'Male' },
-      { value: 'female', label: 'Female' },
-    ],
-  }
-  ```
-
-  - Verify that the selected value is correctly stored in the form data.
 
 - **Handles Nested Field Structures Correctly:**
 
@@ -203,30 +135,33 @@ const formSchema = [
   };
   ```
 
-- **Form Submits Successfully When Custom Validation Passes:**
+- **Handle Form Submission Validation**
 
-  - Ensure that the form submits successfully when the custom validation function returns `true`. The `customValidate` function should be implemented to validate the form data according to specific criteria.
+  - **Objective**: Ensure that the form validation is handled during submission based on the `validate` function provided in the schema.
+  - **Details**:
+    - The `validate` function will be included in the schema for specific fields.
+    - On form submission, validate the form data against the schema.
+    - Display "Form Submitted Successfully!" if validation passes, otherwise display "Form Validation Failed."
+    - Implement a recursive `validateForm` function to handle nested fields.
 
-  ```javascript
-  <DynamicForm formSchema={formSchema} customValidate={customValidate} />
-  ```
+```javascript
+const formSchema = [
+  {
+    type: 'text',
+    name: 'name',
+    label: 'Name',
+    placeholder: 'Enter your name',
+    required: true,
+  },
+  {
+    type: 'text',
+    name: 'email',
+    label: 'Email',
+    placeholder: 'Enter your Email',
+    required: true,
+    validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value), // Email should match regex
+  },
+];
+```
 
-  The `customValidate` function could look something like this:
-
-  ```javascript
-  /**
-   * Custom validation function to check form data.
-   * @param {object} formData - The current form data.
-   * @returns {boolean} - Returns true if validation passes, false otherwise.
-   */
-  const customValidate = useCallback((formData) => {
-    // TODO: implement validation logic
-    // Example: return true if a specific field starts with a certain value
-  }, []);
-  ```
-
-- **Form Shows Validation Error When Custom Validation Fails:**
-
-  - Ensure that the form displays an appropriate error message when the custom validation function fails. The candidate should implement the logic for handling failed validation and update the form status to show the error message.
-
-  The `customValidate` function will be provided with the form data and should return `false` if the validation fails. If the validation fails, the form should display an error message, such as "Form Validation Failed."
+In this schema, ensure that the `email` field's value is validated against the specified regex pattern. If the value matches the pattern, the form validation is considered successful. If not, validation fails. Implement a recursive `validateForm` function to support validation of nested fields.

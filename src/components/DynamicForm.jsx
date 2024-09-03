@@ -2,7 +2,12 @@ import React, { Fragment, useCallback, useState } from 'react';
 import SchemaField from './SchemaField';
 import { mergeDeep } from '../utils/mergeDeep';
 
-const DynamicForm = ({ formSchema, onFormDataChange, customValidate }) => {
+// Validate the entire form recursively
+const validateForm = (formSchema, formData) => {
+  // TODO: implement
+};
+
+const DynamicForm = ({ formSchema, onFormDataChange }) => {
   const [formData, setFormData] = useState({});
   const [formStatus, setFormStatus] = useState('');
 
@@ -19,11 +24,18 @@ const DynamicForm = ({ formSchema, onFormDataChange, customValidate }) => {
     [formData]
   );
 
-  const handleSubmit = useCallback((e) => {
-    let formStatus = true;
-    if (formStatus) setFormStatus('Form Submitted Successfully!');
-    if (!formStatus) setFormStatus('Form Validation Failed');
-  }, []);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      let formStatus = validateForm(formSchema, formData);
+      if (formStatus)
+        setFormStatus(
+          formStatus ? 'Form Submitted Successfully!' : 'Form Validation Failed'
+        );
+    },
+    [formSchema, formData]
+  );
 
   return (
     <Fragment>

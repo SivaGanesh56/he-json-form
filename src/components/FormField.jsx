@@ -1,25 +1,28 @@
 import React, { useCallback, useMemo } from 'react';
 
 const sanitizeValue = (target) => {
-  const { value, type } = target;
+  const { value, type, checked } = target;
   switch (type) {
     case 'number':
       return Number(value);
+    case 'checkbox':
+      return checked;
     default:
       return value;
   }
 };
 
 const FormField = ({ field, handleChange }) => {
-  const { type, options, name, placeholder, fields } = field;
+  const { type, options, name, placeholder, required, fields } = field;
 
   const commonProps = useMemo(
     () => ({
       id: name,
       name,
       placeholder,
+      required,
     }),
-    [name, placeholder]
+    [name, placeholder, required]
   );
 
   const onChange = useCallback(
@@ -39,12 +42,17 @@ const FormField = ({ field, handleChange }) => {
         <select onChange={onChange} {...commonProps}>
           <option value="">{placeholder}</option>
           {options.map((option) => (
-            <option key={option.value} value={option.label}>
-              {option.label}
+            <option key={option.value} value={option.value}>
+              {option.value}
             </option>
           ))}
         </select>
       );
+    case 'object':
+      // TODO: implement
+      return;
+    default:
+      return null;
   }
 };
 
