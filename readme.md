@@ -2,7 +2,7 @@
 
 ## Overview
 
-You are provided with a **Dynamic Form** that can render various types of form fields (text, select, checkbox, number, radio) based on a given schema. The form supports features like custom validation, nested fields, and handles form data changes through callbacks.
+You are provided with a **Dynamic Form** that can render various types of form fields (text, select, checkbox, number) based on a given schema. The form supports features like custom validation, nested fields, and handles form data changes through callbacks.
 
 ### Your Task
 
