@@ -50,7 +50,7 @@ const formSchema = [
     ],
   },
   {
-    type: 'object',
+    type: 'nested',
     label: 'Address',
     name: 'address',
     fields: [
@@ -104,7 +104,7 @@ const formSchema = [
       required: true,
     },
     {
-      type: 'object',
+      type: 'nested',
       label: 'Address',
       name: 'address',
       fields: [

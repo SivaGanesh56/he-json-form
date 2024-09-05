@@ -43,12 +43,12 @@ const FormField = ({ field, handleChange }) => {
           <option value="">{placeholder}</option>
           {options.map((option) => (
             <option key={option.value} value={option.value}>
-              {option.value}
+              {option.label}
             </option>
           ))}
         </select>
       );
-    case 'object':
+    case 'nested':
       // TODO: implement
       return;
     default:

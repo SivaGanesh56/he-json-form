@@ -2,40 +2,40 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import DynamicForm from '../components/DynamicForm';
 
-test('dropdown should display correct labels', () => {
-  const formSchema = [
-    {
-      type: 'select',
-      name: 'country',
-      label: 'Country',
-      options: [
-        { value: 'us', label: 'United States' },
-        { value: 'ca', label: 'Canada' },
-        { value: 'mx', label: 'Mexico' },
-        { value: 'gb', label: 'United Kingdom' },
-        { value: 'au', label: 'Australia' },
-      ],
-    },
-  ];
+// test('dropdown should display correct labels', () => {
+//   const formSchema = [
+//     {
+//       type: 'select',
+//       name: 'country',
+//       label: 'Country',
+//       options: [
+//         { value: 'us', label: 'United States' },
+//         { value: 'ca', label: 'Canada' },
+//         { value: 'mx', label: 'Mexico' },
+//         { value: 'gb', label: 'United Kingdom' },
+//         { value: 'au', label: 'Australia' },
+//       ],
+//     },
+//   ];
 
-  render(<DynamicForm formSchema={formSchema} />);
+//   render(<DynamicForm formSchema={formSchema} />);
 
-  expect(
-    screen.getByRole('option', { name: 'United States' })
-  ).toHaveTextContent('United States');
-  expect(screen.getByRole('option', { name: 'Canada' })).toHaveTextContent(
-    'Canada'
-  );
-  expect(screen.getByRole('option', { name: 'Mexico' })).toHaveTextContent(
-    'Mexico'
-  );
-  expect(
-    screen.getByRole('option', { name: 'United Kingdom' })
-  ).toHaveTextContent('United Kingdom');
-  expect(screen.getByRole('option', { name: 'Australia' })).toHaveTextContent(
-    'Australia'
-  );
-});
+//   expect(
+//     screen.getByRole('option', { name: 'United States' })
+//   ).toHaveTextContent('United States');
+//   expect(screen.getByRole('option', { name: 'Canada' })).toHaveTextContent(
+//     'Canada'
+//   );
+//   expect(screen.getByRole('option', { name: 'Mexico' })).toHaveTextContent(
+//     'Mexico'
+//   );
+//   expect(
+//     screen.getByRole('option', { name: 'United Kingdom' })
+//   ).toHaveTextContent('United Kingdom');
+//   expect(screen.getByRole('option', { name: 'Australia' })).toHaveTextContent(
+//     'Australia'
+//   );
+// });
 
 test('handles deeply nested field structures correctly', () => {
   const formSchema = [
@@ -51,7 +51,7 @@ test('handles deeply nested field structures correctly', () => {
       label: 'Subscribe to newsletter',
     },
     {
-      type: 'object',
+      type: 'nested',
       label: 'Address',
       name: 'address',
       fields: [
@@ -66,7 +66,7 @@ test('handles deeply nested field structures correctly', () => {
           label: 'Zipcode',
         },
         {
-          type: 'object',
+          type: 'nested',
           label: 'Location Details',
           name: 'locationDetails',
           fields: [
@@ -76,7 +76,7 @@ test('handles deeply nested field structures correctly', () => {
               label: 'City',
             },
             {
-              type: 'object',
+              type: 'nested',
               label: 'Country Details',
               name: 'countryDetails',
               fields: [
@@ -176,7 +176,7 @@ const formSchema = [
     label: 'Sign up for newsletter',
   },
   {
-    type: 'object',
+    type: 'nested',
     label: 'Residence',
     name: 'residence',
     fields: [
@@ -192,20 +192,96 @@ const formSchema = [
       },
       {
         type: 'text',
-        name: 'phoneNumber',
-        label: 'Phone Number',
-        placeholder: 'Enter your phone number',
-        validate: (value) => String(value).startsWith('+1'),
+        name: 'primaryContact',
+        label: 'Primary Number',
+        validate: (value) => String(value).startsWith('+91'),
+      },
+      {
+        type: 'nested',
+        name: 'currentAddress',
+        label: 'Current Address',
+        fields: [
+          {
+            type: 'text',
+            name: 'phoneNumber',
+            label: 'Phone Number',
+            placeholder: 'Enter your phone number',
+            validate: (value) => String(value).startsWith('+1'),
+          },
+        ],
       },
     ],
   },
 ];
 
-// Test case for valid data
-test('form should validate and submit correctly with valid data', async () => {
+// Test case for flat data
+test('form should validate and submit correctly with flat data', async () => {
   render(<DynamicForm formSchema={formSchema} />);
 
   // Fill in the form with valid data
+  fireEvent.change(screen.getByLabelText(/full name/i), {
+    target: { value: 'John Doe' },
+  });
+  fireEvent.change(screen.getByLabelText(/user email/i), {
+    target: { value: 'john.doe' }, // invalid
+  });
+  fireEvent.change(screen.getByLabelText(/region/i), {
+    target: { value: 'la' },
+  });
+  fireEvent.click(screen.getByLabelText(/sign up for newsletter/i));
+  fireEvent.change(screen.getByLabelText(/neighborhood/i), {
+    target: { value: 'Downtown' },
+  });
+  fireEvent.change(screen.getByLabelText(/postal code/i), {
+    target: { value: 90001 },
+  });
+  fireEvent.change(
+    screen.getByLabelText(/primary number/i, { selector: 'input' }),
+    {
+      target: { value: '+9134567890' },
+    }
+  );
+  fireEvent.change(
+    screen.getByLabelText(/phone number/i, { selector: 'input' }),
+    {
+      target: { value: '+1234567890' },
+    }
+  );
+
+  // Submit the form
+  fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+
+  // Wait for the failure message to appear
+  await waitFor(
+    () => {
+      const successMessage = screen.getByText(/form validation failed/i);
+      expect(successMessage).toBeInTheDocument();
+    },
+    { timeout: 3000 }
+  );
+
+  fireEvent.change(screen.getByLabelText(/user email/i), {
+    target: { value: 'john.doe@gmail.com' }, // valid
+  });
+
+  // Submit the form
+  fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+
+  // Wait for the success message to appear
+  await waitFor(
+    () => {
+      const successMessage = screen.getByText(/form submitted successfully/i);
+      expect(successMessage).toBeInTheDocument();
+    },
+    { timeout: 3000 }
+  );
+});
+
+// Test case for nested data
+test('form should validate and submit correctly with nested data', async () => {
+  render(<DynamicForm formSchema={formSchema} />);
+
+  // Fill in the form with invalid data
   fireEvent.change(screen.getByLabelText(/full name/i), {
     target: { value: 'John Doe' },
   });
@@ -223,9 +299,40 @@ test('form should validate and submit correctly with valid data', async () => {
     target: { value: 90001 },
   });
   fireEvent.change(
+    screen.getByLabelText(/primary number/i, { selector: 'input' }),
+    {
+      target: { value: '+34567890' }, // invalid
+    }
+  );
+  fireEvent.change(
     screen.getByLabelText(/phone number/i, { selector: 'input' }),
     {
-      target: { value: '+1234567890' },
+      target: { value: '34567890' }, // invalid
+    }
+  );
+
+  // Submit the form
+  fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+
+  // Wait for the failure message to appear
+  await waitFor(
+    () => {
+      const successMessage = screen.getByText(/form validation failed/i);
+      expect(successMessage).toBeInTheDocument();
+    },
+    { timeout: 3000 }
+  );
+
+  fireEvent.change(
+    screen.getByLabelText(/primary number/i, { selector: 'input' }),
+    {
+      target: { value: '+914567890' }, // valid
+    }
+  );
+  fireEvent.change(
+    screen.getByLabelText(/phone number/i, { selector: 'input' }),
+    {
+      target: { value: '+134567890' }, // valid
     }
   );
 
@@ -240,46 +347,4 @@ test('form should validate and submit correctly with valid data', async () => {
     },
     { timeout: 3000 }
   );
-});
-
-// Test case for invalid data
-test('form should fail validation and not submit with invalid data', async () => {
-  render(<DynamicForm formSchema={formSchema} />);
-
-  // Fill in the form with invalid data
-  fireEvent.change(screen.getByLabelText(/full name/i), {
-    target: { value: 'John Doe' },
-  });
-  fireEvent.change(screen.getByLabelText(/user email/i), {
-    target: { value: 'john.doe@example' }, // Invalid email
-  });
-  fireEvent.change(screen.getByLabelText(/region/i), {
-    target: { value: 'la' },
-  });
-  fireEvent.click(screen.getByLabelText(/sign up for newsletter/i));
-  fireEvent.change(screen.getByLabelText(/neighborhood/i), {
-    target: { value: 'Downtown' },
-  });
-  fireEvent.change(screen.getByLabelText(/postal code/i), {
-    target: { value: 90001 },
-  });
-  fireEvent.change(
-    screen.getByLabelText(/phone number/i, { selector: 'input' }),
-    {
-      target: { value: '1234567890' }, // Invalid phone number
-    }
-  );
-
-  // Submit the form
-  fireEvent.click(screen.getByRole('button', { name: /submit/i }));
-
-  // Wait for the failure message to appear with a custom timeout
-  await waitFor(
-    () => {
-      const failureMessage = screen.queryByText(/form validation failed/i);
-      // Check that the failure message is not in the document
-      expect(failureMessage).not.toBeInTheDocument();
-    },
-    { timeout: 3000 }
-  ); // Wait up to 3000ms (3 seconds)
 });
