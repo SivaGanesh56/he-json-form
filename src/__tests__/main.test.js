@@ -254,8 +254,8 @@ test('form should validate and submit correctly with flat data', async () => {
   // Wait for the failure message to appear
   await waitFor(
     () => {
-      const successMessage = screen.getByText(/form validation failed/i);
-      expect(successMessage).toBeInTheDocument();
+      const failureMessage = screen.getByText(/form validation failed/i);
+      expect(failureMessage).toBeInTheDocument();
     },
     { timeout: 3000 }
   );
@@ -292,6 +292,20 @@ test('form should validate and submit correctly with nested data', async () => {
     target: { value: 'la' },
   });
   fireEvent.click(screen.getByLabelText(/sign up for newsletter/i));
+
+  // Submit the form
+  fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+
+  // Wait for the failure message to appear
+  await waitFor(
+    () => {
+      const failureMessage = screen.getByText(/form validation failed/i);
+      expect(failureMessage).toBeInTheDocument();
+    },
+    { timeout: 3000 }
+  );
+
+  // nested fields
   fireEvent.change(screen.getByLabelText(/neighborhood/i), {
     target: { value: 'Downtown' },
   });
@@ -317,8 +331,8 @@ test('form should validate and submit correctly with nested data', async () => {
   // Wait for the failure message to appear
   await waitFor(
     () => {
-      const successMessage = screen.getByText(/form validation failed/i);
-      expect(successMessage).toBeInTheDocument();
+      const failureMessage = screen.getByText(/form validation failed/i);
+      expect(failureMessage).toBeInTheDocument();
     },
     { timeout: 3000 }
   );

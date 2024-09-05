@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="3" failures="3" errors="0" time="2.385">
-  <testsuite name="src/__tests__/sample.test.js" errors="0" failures="3" skipped="0" timestamp="2024-09-05T11:17:12" time="1.752" tests="3">
-    <testcase classname="" name="handles nested field structures correctly" time="0.027">
+<testsuites name="jest tests" tests="3" failures="3" errors="0" time="4.136">
+  <testsuite name="src/__tests__/main.test.js" errors="0" failures="3" skipped="0" timestamp="2024-09-05T12:20:26" time="3.794" tests="3">
+    <testcase classname="" name="handles deeply nested field structures correctly" time="0.027">
       <failure>TestingLibraryElementError: Unable to find a label with the text of: /area/i
 
 Ignored nodes: comments, script, style
@@ -41,20 +41,6 @@ Ignored nodes: comments, script, style
         /&gt;
       &lt;/div&gt;
       &lt;div
-        class=&quot;form-field-container number&quot;
-      &gt;
-        &lt;label
-          for=&quot;age&quot;
-        &gt;
-          Age
-        &lt;/label&gt;
-        &lt;input
-          id=&quot;age&quot;
-          name=&quot;age&quot;
-          type=&quot;number&quot;
-        /&gt;
-      &lt;/div&gt;
-      &lt;div
         class=&quot;form-field-container nested&quot;
       &gt;
         &lt;label
@@ -76,16 +62,15 @@ Ignored nodes: comments, script, style
     at getAllByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/queries/label-text.js:111:38)
     at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
     at getByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
-    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:74:28)
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:114:28)
     at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
     at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
     at new Promise (&lt;anonymous&gt;)
     at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
-    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41</failure>
     </testcase>
-    <testcase classname="" name="form should validate and submit correctly with valid data" time="0.014">
-      <failure>TestingLibraryElementError: Unable to find a label with the text of: /area/i
+    <testcase classname="" name="form should validate and submit correctly with flat data" time="0.014">
+      <failure>TestingLibraryElementError: Unable to find a label with the text of: /neighborhood/i
 
 Ignored nodes: comments, script, style
 &lt;body&gt;
@@ -98,14 +83,14 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container text&quot;
       &gt;
         &lt;label
-          for=&quot;name&quot;
+          for=&quot;fullName&quot;
         &gt;
-          Name
+          Full Name
         &lt;/label&gt;
         &lt;input
-          id=&quot;name&quot;
-          name=&quot;name&quot;
-          placeholder=&quot;Enter your name&quot;
+          id=&quot;fullName&quot;
+          name=&quot;fullName&quot;
+          placeholder=&quot;Enter your full name&quot;
           required=&quot;&quot;
           type=&quot;text&quot;
         /&gt;
@@ -114,14 +99,14 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container text&quot;
       &gt;
         &lt;label
-          for=&quot;email&quot;
+          for=&quot;userEmail&quot;
         &gt;
-          Email
+          User Email
         &lt;/label&gt;
         &lt;input
-          id=&quot;email&quot;
-          name=&quot;email&quot;
-          placeholder=&quot;Enter your Email&quot;
+          id=&quot;userEmail&quot;
+          name=&quot;userEmail&quot;
+          placeholder=&quot;Enter your email address&quot;
           required=&quot;&quot;
           type=&quot;text&quot;
         /&gt;
@@ -130,29 +115,29 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container select&quot;
       &gt;
         &lt;label
-          for=&quot;country&quot;
+          for=&quot;region&quot;
         &gt;
-          Country
+          Region
         &lt;/label&gt;
         &lt;select
-          id=&quot;country&quot;
-          name=&quot;country&quot;
-          placeholder=&quot;please select&quot;
+          id=&quot;region&quot;
+          name=&quot;region&quot;
+          placeholder=&quot;Select your region&quot;
         &gt;
           &lt;option
             value=&quot;&quot;
           &gt;
-            please select
+            Select your region
           &lt;/option&gt;
           &lt;option
-            value=&quot;us&quot;
+            value=&quot;ny&quot;
           &gt;
-            United States
+            New York
           &lt;/option&gt;
           &lt;option
-            value=&quot;ca&quot;
+            value=&quot;la&quot;
           &gt;
-            Canada
+            Los Angeles
           &lt;/option&gt;
         &lt;/select&gt;
       &lt;/div&gt;
@@ -160,13 +145,13 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container checkbox&quot;
       &gt;
         &lt;label
-          for=&quot;subscribe&quot;
+          for=&quot;newsletter&quot;
         &gt;
-          Subscribe to newsletter
+          Sign up for newsletter
         &lt;/label&gt;
         &lt;input
-          id=&quot;subscribe&quot;
-          name=&quot;subscribe&quot;
+          id=&quot;newsletter&quot;
+          name=&quot;newsletter&quot;
           type=&quot;checkbox&quot;
         /&gt;
       &lt;/div&gt;
@@ -174,9 +159,9 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container nested&quot;
       &gt;
         &lt;label
-          for=&quot;address&quot;
+          for=&quot;residence&quot;
         &gt;
-          Address
+          Residence
         &lt;/label&gt;
       &lt;/div&gt;
       &lt;button
@@ -192,28 +177,32 @@ Ignored nodes: comments, script, style
     at getAllByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/queries/label-text.js:111:38)
     at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
     at getByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
-    at call (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:165:27)
-    at tryCatch (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at Generator._invoke (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at Generator.next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at asyncGeneratorStep (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at _next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at /Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1
+    at call (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:232:27)
+    at tryCatch (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at Generator._invoke (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at Generator.next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at asyncGeneratorStep (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at _next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1
     at new Promise (&lt;anonymous&gt;)
-    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
     at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
     at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
     at new Promise (&lt;anonymous&gt;)
     at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
-    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41</failure>
     </testcase>
-    <testcase classname="" name="form should fail validation and not submit with invalid data" time="0.009">
-      <failure>TestingLibraryElementError: Unable to find a label with the text of: /area/i
+    <testcase classname="" name="form should validate and submit correctly with nested data" time="3.037">
+      <failure>TestingLibraryElementError: Unable to find an element with the text: /form validation failed/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
 &lt;body&gt;
   &lt;div&gt;
+    &lt;div
+      class=&quot;form-status&quot;
+    &gt;
+      Form Submitted Successfully
+    &lt;/div&gt;
     &lt;form
       class=&quot;form-container&quot;
       role=&quot;form&quot;
@@ -222,14 +211,14 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container text&quot;
       &gt;
         &lt;label
-          for=&quot;name&quot;
+          for=&quot;fullName&quot;
         &gt;
-          Name
+          Full Name
         &lt;/label&gt;
         &lt;input
-          id=&quot;name&quot;
-          name=&quot;name&quot;
-          placeholder=&quot;Enter your name&quot;
+          id=&quot;fullName&quot;
+          name=&quot;fullName&quot;
+          placeholder=&quot;Enter your full name&quot;
           required=&quot;&quot;
           type=&quot;text&quot;
         /&gt;
@@ -238,14 +227,14 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container text&quot;
       &gt;
         &lt;label
-          for=&quot;email&quot;
+          for=&quot;userEmail&quot;
         &gt;
-          Email
+          User Email
         &lt;/label&gt;
         &lt;input
-          id=&quot;email&quot;
-          name=&quot;email&quot;
-          placeholder=&quot;Enter your Email&quot;
+          id=&quot;userEmail&quot;
+          name=&quot;userEmail&quot;
+          placeholder=&quot;Enter your email address&quot;
           required=&quot;&quot;
           type=&quot;text&quot;
         /&gt;
@@ -254,29 +243,29 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container select&quot;
       &gt;
         &lt;label
-          for=&quot;country&quot;
+          for=&quot;region&quot;
         &gt;
-          Country
+          Region
         &lt;/label&gt;
         &lt;select
-          id=&quot;country&quot;
-          name=&quot;country&quot;
-          placeholder=&quot;please select&quot;
+          id=&quot;region&quot;
+          name=&quot;region&quot;
+          placeholder=&quot;Select your region&quot;
         &gt;
           &lt;option
             value=&quot;&quot;
           &gt;
-            please select
+            Select your region
           &lt;/option&gt;
           &lt;option
-            value=&quot;us&quot;
+            value=&quot;ny&quot;
           &gt;
-            United States
+            New York
           &lt;/option&gt;
           &lt;option
-            value=&quot;ca&quot;
+            value=&quot;la&quot;
           &gt;
-            Canada
+            Los Angeles
           &lt;/option&gt;
         &lt;/select&gt;
       &lt;/div&gt;
@@ -284,13 +273,13 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container checkbox&quot;
       &gt;
         &lt;label
-          for=&quot;subscribe&quot;
+          for=&quot;newsletter&quot;
         &gt;
-          Subscribe to newsletter
+          Sign up for newsletter
         &lt;/label&gt;
         &lt;input
-          id=&quot;subscribe&quot;
-          name=&quot;subscribe&quot;
+          id=&quot;newsletter&quot;
+          name=&quot;newsletter&quot;
           type=&quot;checkbox&quot;
         /&gt;
       &lt;/div&gt;
@@ -298,9 +287,9 @@ Ignored nodes: comments, script, style
         class=&quot;form-field-container nested&quot;
       &gt;
         &lt;label
-          for=&quot;address&quot;
+          for=&quot;residence&quot;
         &gt;
-          Address
+          Residence
         &lt;/label&gt;
       &lt;/div&gt;
       &lt;button
@@ -312,25 +301,238 @@ Ignored nodes: comments, script, style
     &lt;/form&gt;
   &lt;/div&gt;
 &lt;/body&gt;
-    at Object.getElementError (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/config.js:37:19)
-    at getAllByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/queries/label-text.js:111:38)
-    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
-    at getByLabelText (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
-    at call (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:215:27)
-    at tryCatch (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at Generator._invoke (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at Generator.next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at asyncGeneratorStep (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at _next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
-    at /Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1
+
+Ignored nodes: comments, script, style
+&lt;html&gt;
+  &lt;head /&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;div
+        class=&quot;form-status&quot;
+      &gt;
+        Form Submitted Successfully
+      &lt;/div&gt;
+      &lt;form
+        class=&quot;form-container&quot;
+        role=&quot;form&quot;
+      &gt;
+        &lt;div
+          class=&quot;form-field-container text&quot;
+        &gt;
+          &lt;label
+            for=&quot;fullName&quot;
+          &gt;
+            Full Name
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;fullName&quot;
+            name=&quot;fullName&quot;
+            placeholder=&quot;Enter your full name&quot;
+            required=&quot;&quot;
+            type=&quot;text&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;form-field-container text&quot;
+        &gt;
+          &lt;label
+            for=&quot;userEmail&quot;
+          &gt;
+            User Email
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;userEmail&quot;
+            name=&quot;userEmail&quot;
+            placeholder=&quot;Enter your email address&quot;
+            required=&quot;&quot;
+            type=&quot;text&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;form-field-container select&quot;
+        &gt;
+          &lt;label
+            for=&quot;region&quot;
+          &gt;
+            Region
+          &lt;/label&gt;
+          &lt;select
+            id=&quot;region&quot;
+            name=&quot;region&quot;
+            placeholder=&quot;Select your region&quot;
+          &gt;
+            &lt;option
+              value=&quot;&quot;
+            &gt;
+              Select your region
+            &lt;/option&gt;
+            &lt;option
+              value=&quot;ny&quot;
+            &gt;
+              New York
+            &lt;/option&gt;
+            &lt;option
+              value=&quot;la&quot;
+            &gt;
+              Los Angeles
+            &lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;form-field-container checkbox&quot;
+        &gt;
+          &lt;label
+            for=&quot;newsletter&quot;
+          &gt;
+            Sign up for newsletter
+          &lt;/label&gt;
+          &lt;input
+            id=&quot;newsletter&quot;
+            name=&quot;newsletter&quot;
+            type=&quot;checkbox&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;form-field-container nested&quot;
+        &gt;
+          &lt;label
+            for=&quot;residence&quot;
+          &gt;
+            Residence
+          &lt;/label&gt;
+        &lt;/div&gt;
+        &lt;button
+          class=&quot;submit-btn&quot;
+          type=&quot;submit&quot;
+        &gt;
+          Submit
+        &lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;Error: Unable to find an element with the text: /form validation failed/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;form-status&quot;
+    &gt;
+      Form Submitted Successfully
+    &lt;/div&gt;
+    &lt;form
+      class=&quot;form-container&quot;
+      role=&quot;form&quot;
+    &gt;
+      &lt;div
+        class=&quot;form-field-container text&quot;
+      &gt;
+        &lt;label
+          for=&quot;fullName&quot;
+        &gt;
+          Full Name
+        &lt;/label&gt;
+        &lt;input
+          id=&quot;fullName&quot;
+          name=&quot;fullName&quot;
+          placeholder=&quot;Enter your full name&quot;
+          required=&quot;&quot;
+          type=&quot;text&quot;
+        /&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;form-field-container text&quot;
+      &gt;
+        &lt;label
+          for=&quot;userEmail&quot;
+        &gt;
+          User Email
+        &lt;/label&gt;
+        &lt;input
+          id=&quot;userEmail&quot;
+          name=&quot;userEmail&quot;
+          placeholder=&quot;Enter your email address&quot;
+          required=&quot;&quot;
+          type=&quot;text&quot;
+        /&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;form-field-container select&quot;
+      &gt;
+        &lt;label
+          for=&quot;region&quot;
+        &gt;
+          Region
+        &lt;/label&gt;
+        &lt;select
+          id=&quot;region&quot;
+          name=&quot;region&quot;
+          placeholder=&quot;Select your region&quot;
+        &gt;
+          &lt;option
+            value=&quot;&quot;
+          &gt;
+            Select your region
+          &lt;/option&gt;
+          &lt;option
+            value=&quot;ny&quot;
+          &gt;
+            New York
+          &lt;/option&gt;
+          &lt;option
+            value=&quot;la&quot;
+          &gt;
+            Los Angeles
+          &lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;form-field-container checkbox&quot;
+      &gt;
+        &lt;label
+          for=&quot;newsletter&quot;
+        &gt;
+          Sign up for newsletter
+        &lt;/label&gt;
+        &lt;input
+          id=&quot;newsletter&quot;
+          name=&quot;newsletter&quot;
+          type=&quot;checkbox&quot;
+        /&gt;
+      &lt;/div&gt;
+      &lt;div
+        class=&quot;form-field-container nested&quot;
+      &gt;
+        &lt;label
+          for=&quot;residence&quot;
+        &gt;
+          Residence
+        &lt;/label&gt;
+      &lt;/div&gt;
+      &lt;button
+        class=&quot;submit-btn&quot;
+        type=&quot;submit&quot;
+      &gt;
+        Submit
+      &lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    at waitForWrapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+    at call (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:300:16)
+    at tryCatch (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at Generator._invoke (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at Generator.next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at asyncGeneratorStep (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at _next (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
+    at /Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1
     at new Promise (&lt;anonymous&gt;)
-    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/sample.test.js:2:1)
+    at Object.&lt;anonymous&gt; (/Users/siva.manyam/frontend/projects/he-hello-world/src/__tests__/main.test.js:2:1)
     at Object.asyncJestTest (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:106:37)
     at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:45:12
     at new Promise (&lt;anonymous&gt;)
     at mapper (/Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:28:19)
-    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    at /Users/siva.manyam/frontend/projects/he-hello-world/node_modules/jest-jasmine2/build/queueRunner.js:75:41</failure>
     </testcase>
   </testsuite>
 </testsuites>

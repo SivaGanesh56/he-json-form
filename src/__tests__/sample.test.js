@@ -96,11 +96,6 @@ const formSchema = [
     ],
   },
   {
-    type: 'checkbox',
-    name: 'subscribe',
-    label: 'Subscribe to newsletter',
-  },
-  {
     type: 'nested',
     label: 'Address',
     name: 'address',
@@ -138,7 +133,6 @@ test('form should validate and submit correctly with flat data', async () => {
   fireEvent.change(screen.getByLabelText(/country/i), {
     target: { value: 'ca' },
   });
-  fireEvent.click(screen.getByLabelText(/subscribe to newsletter/i));
   fireEvent.change(screen.getByLabelText(/area/i), {
     target: { value: 'Gotham' },
   });
@@ -191,7 +185,21 @@ test('form should validate and submit correctly with nested data', async () => {
   fireEvent.change(screen.getByLabelText(/country/i), {
     target: { value: 'ca' },
   });
-  fireEvent.click(screen.getByLabelText(/subscribe to newsletter/i));
+
+  // Submit the form
+  fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+
+  // Wait for the failure message to appear with a custom timeout
+  await waitFor(
+    () => {
+      const failureMessage = screen.queryByText(/form validation failed/i);
+      // Check that the failure message is in the document
+      expect(failureMessage).toBeInTheDocument();
+    },
+    { timeout: 3000 }
+  );
+
+  // nested fields
   fireEvent.change(screen.getByLabelText(/area/i), {
     target: { value: 'Gotham' },
   });
@@ -199,7 +207,7 @@ test('form should validate and submit correctly with nested data', async () => {
     target: { value: 54321 },
   });
   fireEvent.change(screen.getByLabelText(/contact/i, { selector: 'input' }), {
-    target: { value: '9876543210' }, // Invalid contact
+    target: { value: '7327000000' }, // Invalid contact
   });
 
   // Submit the form
@@ -210,7 +218,7 @@ test('form should validate and submit correctly with nested data', async () => {
     () => {
       const failureMessage = screen.queryByText(/form validation failed/i);
       // Check that the failure message is not in the document
-      expect(failureMessage).not.toBeInTheDocument();
+      expect(failureMessage).toBeInTheDocument();
     },
     { timeout: 3000 }
   );
@@ -225,9 +233,9 @@ test('form should validate and submit correctly with nested data', async () => {
   // Wait for the success message to appear with a custom timeout
   await waitFor(
     () => {
-      const failureMessage = screen.queryByText(/form submitted successfully/i);
+      const successMessage = screen.queryByText(/form submitted successfully/i);
       // Check that the failure message is not in the document
-      expect(failureMessage).not.toBeInTheDocument();
+      expect(successMessage).toBeInTheDocument();
     },
     { timeout: 3000 }
   );
