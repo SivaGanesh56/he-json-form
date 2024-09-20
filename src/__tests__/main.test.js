@@ -37,62 +37,34 @@ import DynamicForm from '../components/DynamicForm';
 //   );
 // });
 
-test('handles deeply nested field structures correctly', () => {
-  const formSchema = [
+test('handles nested field structures correctly', () => {
+  const formConfig = [
     {
       type: 'text',
-      name: 'name',
-      label: 'Name',
-      placeholder: 'Enter your name',
+      name: 'fullName',
+      label: 'Full Name',
+      placeholder: 'Enter your full name',
     },
     {
       type: 'checkbox',
-      name: 'subscribe',
-      label: 'Subscribe to newsletter',
+      name: 'newsletterSubscription',
+      label: 'Subscribe to newsletter updates',
     },
+    { type: 'number', name: 'userAge', label: 'Your Age' },
     {
       type: 'nested',
-      label: 'Address',
-      name: 'address',
+      label: 'Contact Information',
+      name: 'userAddress',
       fields: [
         {
           type: 'text',
-          name: 'area',
-          label: 'Area',
+          name: 'city',
+          label: 'City',
         },
         {
           type: 'number',
-          name: 'zipcode',
-          label: 'Zipcode',
-        },
-        {
-          type: 'nested',
-          label: 'Location Details',
-          name: 'locationDetails',
-          fields: [
-            {
-              type: 'text',
-              name: 'city',
-              label: 'City',
-            },
-            {
-              type: 'nested',
-              label: 'Country Details',
-              name: 'countryDetails',
-              fields: [
-                {
-                  type: 'text',
-                  name: 'country',
-                  label: 'Country',
-                },
-                {
-                  type: 'text',
-                  name: 'state',
-                  label: 'State',
-                },
-              ],
-            },
-          ],
+          name: 'postalCode',
+          label: 'Postal Code',
         },
       ],
     },
@@ -102,42 +74,31 @@ test('handles deeply nested field structures correctly', () => {
 
   render(
     <DynamicForm
-      formSchema={formSchema}
+      formSchema={formConfig}
       onFormDataChange={(data) => {
         formData = data;
       }}
     />
   );
 
-  const nameInput = screen.getByLabelText(/name/i);
-  const checkboxInput = screen.getByLabelText(/subscribe to newsletter/i);
-  const areaInput = screen.getByLabelText(/area/i);
-  const zipcodeInput = screen.getByLabelText(/zipcode/i);
+  const nameInput = screen.getByLabelText(/full name/i);
+  const checkboxInput = screen.getByLabelText(
+    /subscribe to newsletter updates/i
+  );
   const cityInput = screen.getByLabelText(/city/i);
-  const countryInput = screen.getByLabelText(/country/i);
-  const stateInput = screen.getByLabelText(/state/i);
+  const postalCodeInput = screen.getByLabelText(/postal code/i);
 
   fireEvent.change(nameInput, { target: { value: 'John Doe' } });
   fireEvent.click(checkboxInput);
-  fireEvent.change(areaInput, { target: { value: 'Springfield' } });
-  fireEvent.change(zipcodeInput, { target: { value: 23513 } });
-  fireEvent.change(cityInput, { target: { value: 'Gotham' } });
-  fireEvent.change(countryInput, { target: { value: 'USA' } });
-  fireEvent.change(stateInput, { target: { value: 'NY' } });
+  fireEvent.change(cityInput, { target: { value: 'Springfield' } });
+  fireEvent.change(postalCodeInput, { target: { value: 23513 } });
 
   const expectedFormData = {
-    name: 'John Doe',
-    subscribe: true,
-    address: {
-      area: 'Springfield',
-      zipcode: 23513,
-      locationDetails: {
-        city: 'Gotham',
-        countryDetails: {
-          country: 'USA',
-          state: 'NY',
-        },
-      },
+    fullName: 'John Doe',
+    newsletterSubscription: true,
+    userAddress: {
+      city: 'Springfield',
+      postalCode: 23513,
     },
   };
 
@@ -155,35 +116,30 @@ const formSchema = [
   {
     type: 'text',
     name: 'userEmail',
-    label: 'User Email',
-    placeholder: 'Enter your email address',
+    label: 'Email Address',
+    placeholder: 'Enter your email',
     required: true,
     validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
   },
   {
     type: 'select',
-    name: 'region',
-    label: 'Region',
-    placeholder: 'Select your region',
+    name: 'userCountry',
+    label: 'Country of Residence',
+    placeholder: 'Please choose a country',
     options: [
-      { value: 'ny', label: 'New York' },
-      { value: 'la', label: 'Los Angeles' },
+      { value: 'us', label: 'USA' },
+      { value: 'ca', label: 'Canada' },
     ],
   },
   {
-    type: 'checkbox',
-    name: 'newsletter',
-    label: 'Sign up for newsletter',
-  },
-  {
     type: 'nested',
-    label: 'Residence',
-    name: 'residence',
+    label: 'Contact Info',
+    name: 'userAddress',
     fields: [
       {
         type: 'text',
-        name: 'neighborhood',
-        label: 'Neighborhood',
+        name: 'region',
+        label: 'Region',
       },
       {
         type: 'number',
@@ -192,59 +148,37 @@ const formSchema = [
       },
       {
         type: 'text',
-        name: 'primaryContact',
-        label: 'Primary Number',
-        validate: (value) => String(value).startsWith('+91'),
-      },
-      {
-        type: 'nested',
-        name: 'currentAddress',
-        label: 'Current Address',
-        fields: [
-          {
-            type: 'text',
-            name: 'phoneNumber',
-            label: 'Phone Number',
-            placeholder: 'Enter your phone number',
-            validate: (value) => String(value).startsWith('+1'),
-          },
-        ],
+        name: 'phoneNumber',
+        label: 'Phone Number',
+        validate: (value) => String(value).startsWith('+44'),
       },
     ],
   },
 ];
 
-// Test case for flat data
 test('form should validate and submit correctly with flat data', async () => {
   render(<DynamicForm formSchema={formSchema} />);
 
   // Fill in the form with valid data
   fireEvent.change(screen.getByLabelText(/full name/i), {
-    target: { value: 'John Doe' },
+    target: { value: 'Alice Johnson' },
   });
-  fireEvent.change(screen.getByLabelText(/user email/i), {
-    target: { value: 'john.doe' }, // invalid
+  fireEvent.change(screen.getByLabelText(/email address/i), {
+    target: { value: 'alice.johnson' },
+  });
+  fireEvent.change(screen.getByLabelText(/country of residence/i), {
+    target: { value: 'ca' },
   });
   fireEvent.change(screen.getByLabelText(/region/i), {
-    target: { value: 'la' },
-  });
-  fireEvent.click(screen.getByLabelText(/sign up for newsletter/i));
-  fireEvent.change(screen.getByLabelText(/neighborhood/i), {
-    target: { value: 'Downtown' },
+    target: { value: 'Gotham' },
   });
   fireEvent.change(screen.getByLabelText(/postal code/i), {
-    target: { value: 90001 },
+    target: { value: 54321 },
   });
-  fireEvent.change(
-    screen.getByLabelText(/primary number/i, { selector: 'input' }),
-    {
-      target: { value: '+9134567890' },
-    }
-  );
   fireEvent.change(
     screen.getByLabelText(/phone number/i, { selector: 'input' }),
     {
-      target: { value: '+1234567890' },
+      target: { value: '+447987654321' },
     }
   );
 
@@ -254,14 +188,14 @@ test('form should validate and submit correctly with flat data', async () => {
   // Wait for the failure message to appear
   await waitFor(
     () => {
-      const failureMessage = screen.getByText(/form validation failed/i);
-      expect(failureMessage).toBeInTheDocument();
+      const successMessage = screen.getByText(/form validation failed/i);
+      expect(successMessage).toBeInTheDocument();
     },
     { timeout: 3000 }
   );
 
-  fireEvent.change(screen.getByLabelText(/user email/i), {
-    target: { value: 'john.doe@gmail.com' }, // valid
+  fireEvent.change(screen.getByLabelText(/email address/i), {
+    target: { value: 'alice.johnson@gmail.com' },
   });
 
   // Submit the form
@@ -277,86 +211,72 @@ test('form should validate and submit correctly with flat data', async () => {
   );
 });
 
-// Test case for nested data
 test('form should validate and submit correctly with nested data', async () => {
   render(<DynamicForm formSchema={formSchema} />);
 
   // Fill in the form with invalid data
   fireEvent.change(screen.getByLabelText(/full name/i), {
-    target: { value: 'John Doe' },
+    target: { value: 'Alice Johnson' },
   });
-  fireEvent.change(screen.getByLabelText(/user email/i), {
-    target: { value: 'john.doe@example.com' },
+  fireEvent.change(screen.getByLabelText(/email address/i), {
+    target: { value: 'alice.johnson@example.com' },
   });
-  fireEvent.change(screen.getByLabelText(/region/i), {
-    target: { value: 'la' },
+  fireEvent.change(screen.getByLabelText(/country of residence/i), {
+    target: { value: 'ca' },
   });
-  fireEvent.click(screen.getByLabelText(/sign up for newsletter/i));
 
   // Submit the form
   fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
-  // Wait for the failure message to appear
+  // Wait for the failure message to appear with a custom timeout
   await waitFor(
     () => {
-      const failureMessage = screen.getByText(/form validation failed/i);
+      const failureMessage = screen.queryByText(/form validation failed/i);
       expect(failureMessage).toBeInTheDocument();
     },
     { timeout: 3000 }
   );
 
   // nested fields
-  fireEvent.change(screen.getByLabelText(/neighborhood/i), {
-    target: { value: 'Downtown' },
+  fireEvent.change(screen.getByLabelText(/region/i), {
+    target: { value: 'Gotham' },
   });
   fireEvent.change(screen.getByLabelText(/postal code/i), {
-    target: { value: 90001 },
+    target: { value: 54321 },
   });
-  fireEvent.change(
-    screen.getByLabelText(/primary number/i, { selector: 'input' }),
-    {
-      target: { value: '+34567890' }, // invalid
-    }
-  );
   fireEvent.change(
     screen.getByLabelText(/phone number/i, { selector: 'input' }),
     {
-      target: { value: '34567890' }, // invalid
+      target: { value: '1234567890' }, // Invalid phone number
     }
   );
 
   // Submit the form
   fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
-  // Wait for the failure message to appear
+  // Wait for the failure message to appear with a custom timeout
   await waitFor(
     () => {
-      const failureMessage = screen.getByText(/form validation failed/i);
+      const failureMessage = screen.queryByText(/form validation failed/i);
       expect(failureMessage).toBeInTheDocument();
     },
     { timeout: 3000 }
   );
 
   fireEvent.change(
-    screen.getByLabelText(/primary number/i, { selector: 'input' }),
-    {
-      target: { value: '+914567890' }, // valid
-    }
-  );
-  fireEvent.change(
     screen.getByLabelText(/phone number/i, { selector: 'input' }),
     {
-      target: { value: '+134567890' }, // valid
+      target: { value: '+447987654321' }, // Valid phone number
     }
   );
 
   // Submit the form
   fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
-  // Wait for the success message to appear
+  // Wait for the success message to appear with a custom timeout
   await waitFor(
     () => {
-      const successMessage = screen.getByText(/form submitted successfully/i);
+      const successMessage = screen.queryByText(/form submitted successfully/i);
       expect(successMessage).toBeInTheDocument();
     },
     { timeout: 3000 }

@@ -1,5 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
 
+const FIELD_CLASSES =
+  'border rounded min-w-[250px] p-1.5 border-solid border-[#ccc]';
+
 const sanitizeValue = (target) => {
   const { value, type, checked } = target;
   switch (type) {
@@ -21,6 +24,7 @@ const FormField = ({ field, handleChange }) => {
       name,
       placeholder,
       required,
+      className: FIELD_CLASSES,
     }),
     [name, placeholder, required]
   );
@@ -49,7 +53,7 @@ const FormField = ({ field, handleChange }) => {
         </select>
       );
     case 'nested':
-      // TODO: implement
+      // TODO: implement the logic to render the nested fields
       return;
     default:
       return null;

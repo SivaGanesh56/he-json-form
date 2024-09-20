@@ -9,7 +9,7 @@ import { mergeDeep } from '../utils/mergeDeep';
  * @returns {Boolean}
  */
 const validateForm = (formSchema, formData) => {
-  // TODO: implement
+  // TODO: implement the validation logic using formSchema.validate
   return true;
 };
 
@@ -19,9 +19,12 @@ const DynamicForm = ({ formSchema, onFormDataChange }) => {
 
   const handleChange = useCallback(
     ({ name, value }) => {
-      const newFormData = mergeDeep(formData, {
-        [name]: value,
-      });
+      const newFormData = mergeDeep(
+        { ...formData },
+        {
+          [name]: value,
+        }
+      );
 
       setFormData(newFormData);
       setFormStatus(undefined);
@@ -42,15 +45,22 @@ const DynamicForm = ({ formSchema, onFormDataChange }) => {
   return (
     <Fragment>
       {formStatus !== undefined ? (
-        <div className="form-status">
+        <div className="text-[#824463] text-lg mb-2.5">
           {formStatus
             ? 'Form Submitted Successfully'
             : 'Form Validation Failed'}
         </div>
       ) : null}
-      <form className="form-container" role="form" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col gap-4 border p-4 rounded-md border-solid border-[#ccc]"
+        role="form"
+        onSubmit={handleSubmit}
+      >
         <SchemaField formSchema={formSchema} handleChange={handleChange} />
-        <button className="submit-btn" type="submit">
+        <button
+          className="text-white bg-[#007bff] inline-block font-normal text-center whitespace-nowrap align-middle select-none border text-base leading-normal rounded px-3 py-1.5 border-[#007bff] border-solid border-transparent"
+          type="submit"
+        >
           Submit
         </button>
       </form>
